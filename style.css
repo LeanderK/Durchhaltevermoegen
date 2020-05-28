@@ -55,12 +55,16 @@ body {
 
 #landing {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
 }
 
 #backgrvideo {
-    width: 100%;
-    height: auto;
+    object-fit: cover;
+    object-position: center;
+    width: 100vw;
+    height: 100vh;
+    /* width: 100%;
+    height: auto; */
     filter: brightness(90%);
     /* height: 80vh; */
 }
@@ -70,7 +74,7 @@ body {
     top: 0;
     left: 0;
     z-index: 1;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 }
 
@@ -138,10 +142,56 @@ body {
     color: #F7D50C;
     font-size: larger;
     margin: 0px;
-
 }
 
 .innertext {
-  margin: auto;
-  max-width: 1000px;
+    margin: auto;
+    max-width: 1000px;
+}
+
+#fsttext{
+    margin-top: 50px !important;
+}
+
+a {
+    color: #F7D50C;
+    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+    font-size: larger;
+    margin: 0px;
+    text-decoration: underline;
+}
+
+@media (max-width: 62em) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 100px 1fr 100px;
+        grid-template-rows: 100px 2.2fr 100px;
+        gap: 0px 0px;
+        grid-template-areas: "name . logo" ". . ." "dj . .";
+        height: 100vh;
+        padding: 10px;
+    }
+    
+    #backgrvideo {
+        object-fit: cover;
+        object-position: 50% 50%;
+        width: 100vw;
+        height: 100vh;
+    }
+    .innertext {
+        margin: none;
+        max-width: 100%;
+    }
+
+    #fsttext{
+        margin-top: 150px !important;
+    }
+
+    .textblock {
+        margin-top: 150px;
+    }
 }
