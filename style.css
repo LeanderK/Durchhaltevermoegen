@@ -44,7 +44,7 @@ pre {
 }
 
 body {
-    background-image: url("resources/TüDV_Background.jpg");
+    background-image: url("resources/TueDV_Background.jpg");
     background-color: #000000;
     margin: 0px;
 }
@@ -162,8 +162,24 @@ a {
 }
 
 @media (max-width: 62em) {
+    #fsttext{
+        margin-top: 50px !important;
+    }
+
+    .innertext {
+        margin: auto;
+        max-width: 800px;
+    }
+
+    body {
+        background-image: url("resources/TueDV_Background_medium.jpg");
+    }
+}
+
+@media (max-width: 52em) {
     body {
         overflow-x: hidden;
+        background-image: url("resources/TueDV_Background_small.jpg");
     }
 
     .grid-container {
