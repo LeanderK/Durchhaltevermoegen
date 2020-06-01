@@ -166,6 +166,13 @@ a {
     font-size: larger;
     margin: 0px;
     text-decoration: underline;
+    /* text-decoration-color: #CF0E17; */
+    /* animation: under-animation 2s steps(5, start) infinite; */
+}
+
+@keyframes under-animation {
+    0%   { text-decoration: none; }
+    100% { text-decoration: underline; }
 }
 
 @media (max-width: 62em) {
