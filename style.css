@@ -1,10 +1,17 @@
 h1 {
     font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
-    font-size: 24px;
+    font-size: larger;
     font-style: normal;
     font-variant: normal;
-    font-weight: bold;
-    line-height: 26px;
+    font-weight: normal;
+}
+
+h2 {
+    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+    font-size: larger;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
 }
 
 h3 {
