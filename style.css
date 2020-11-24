@@ -90,7 +90,7 @@ body {
     grid-template-columns: 500px 1fr 500px;
     grid-template-rows: 100px 2.2fr 100px;
     gap: 0px 0px;
-    grid-template-areas: "name . logo" ". . ." "dj . .";
+    grid-template-areas: "name . logo" ". . ." "dj . insta";
     height: 100vh;
     padding: 10px;
 }
@@ -113,6 +113,11 @@ body {
     height: 100%; */
 }
 
+.insta {
+    grid-area: insta;
+    text-align: right;
+}
+
 #djwrapper {
     position: absolute;
     bottom: 10px;
@@ -129,6 +134,25 @@ body {
     color: #CF0E17;
     animation: blink-animation 2s steps(5, start) infinite;
 }
+
+.instaiicon {
+    filter: invert(79%) sepia(26%) saturate(1968%) hue-rotate(357deg) brightness(111%) contrast(94%);
+    height: 1.1em;
+    vertical-align: middle;
+    padding-right: 4px;
+}
+
+#instawrapper {
+    position: absolute;
+    bottom: 10px;
+    right:13px
+}
+
+#twitchwrapper{
+    height: 100%;
+    width: 100%;
+}
+
 
 @keyframes blink-animation {
     to {
@@ -160,6 +184,10 @@ body {
     margin-top: 50px !important;
 }
 
+#newslettertext {
+    margin-top: 30px;
+}
+
 a {
     color: #F7D50C;
     font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
@@ -168,6 +196,10 @@ a {
     text-decoration: underline;
     /* text-decoration-color: #CF0E17; */
     /* animation: under-animation 2s steps(5, start) infinite; */
+}
+
+#instatext{
+    /* display: none; */
 }
 
 @keyframes under-animation {
@@ -179,7 +211,6 @@ a {
     #fsttext{
         margin-top: 50px !important;
     }
-
     .innertext {
         margin: auto;
         max-width: 800px;
@@ -191,6 +222,18 @@ a {
 }
 
 @media (max-width: 52em) {
+    .insta {
+        display:none;
+    }
+
+    #instatext{
+        display: initial;
+    }
+
+    #newslettertext {
+        margin-top: 30px;
+    }
+
     body {
         overflow-x: hidden;
         background-image: url("resources/TueDV_Background_small.jpg");
@@ -201,7 +244,7 @@ a {
         grid-template-columns: 100px 1fr 100px;
         grid-template-rows: 100px 2.2fr 100px;
         gap: 0px 0px;
-        grid-template-areas: "name . logo" ". . ." "dj . .";
+        grid-template-areas: "name . logo" ". . ." "dj . insta";
         height: 100vh;
         padding: 10px;
     }

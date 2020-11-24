@@ -27,21 +27,38 @@
         <![endif]-->
 
     <div id="landing">
-        <video autoplay muted loop playsinline id="backgrvideo">
-                <source src="/resources/tuebingen-longest-smaller.mp4" type="video/mp4">
-              </video>
+        <div id="twitchwrapper" style="display: none;">
+            <iframe
+            src="https://player.twitch.tv/?channel=tuebdu&parent=localhost&parent=tuebinger-durchhaltevermoegen.live&muted=true"
+            height="100%"
+            width="100%"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen="true">
+        </iframe>
+        </div>
+        <div id="landingwrapper">
+            <video autoplay muted loop playsinline id="backgrvideo">
+                    <source src="/resources/tuebingen-longest-smaller.mp4" type="video/mp4">
+                </video>
 
-        <div id="overlay">
-            <div class="grid-container">
-                <div class="name">
-                    <h1 class="overlay-text">Tübinger-<br>Durchhalte<br>vermögen<br><span id="livetext">.live</span></h1>
-                </div>
-                <div class="logo">
-                    <img src="/resources/TueDV_Logo.png" style="height: 100%;">
-                </div>
-                <div class="dj">
-                    <div id="djwrapper">
-                        <p class="overlay-text" id="djtext">DJ Mustermann</p>
+            <div id="overlay">
+                <div class="grid-container">
+                    <div class="name">
+                        <h1 class="overlay-text">Tübinger-<br>Durchhalte<br>vermögen<br><span id="livetext">.live</span></h1>
+                    </div>
+                    <div class="logo">
+                        <img src="/resources/TueDV_Logo.png" style="height: 100%;">
+                    </div>
+                    <div class="dj">
+                        <div id="djwrapper">
+                            <p class="overlay-text" id="djtext">DJ Mustermann</p>
+                        </div>
+                    </div>
+                    <div class="insta">
+                        <div id="instawrapper">
+                            <a class="overlay-text" href="https://www.instagram.com/tueb.du/"><img class="instaiicon" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />@tueb.du</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,7 +66,14 @@
     </div>
 
     <div id="fsttext" class="textblock">
-        <div class="innertext">
+        <div class="innertext" id="instatext">
+            <p class="overlay-text">
+                <a class="overlay-text" href="https://www.twitch.tv/tuebdu"><img class="instaiicon" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/youtube.svg" />TuebDu/</a>     
+                <a class="overlay-text" href="https://www.twitch.tv/tuebdu"><img class="instaiicon" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitch.svg" />TuebDu/</a>     
+                <a class="overlay-text" href="https://www.instagram.com/tueb.du/"><img class="instaiicon" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />@tueb.du</a>     
+            </p>
+        </div>
+        <div class="innertext" id="newslettertext">
             <a href="http://eepurl.com/g5bWIT">Hier kannst du dich für unseren newsletter anmelden <span style="font-style: italic;"> / Click here to sign up for our newsletter</span></a>
         </div>
     </div>
@@ -67,13 +91,13 @@
             </p>
             <div>
                 <p style="font-weight: bold;">
-                    Du hast Bock uns zu unsterstützen, z.B. beim Location-Scouting? Melde dich unter <a href = "mailto: info@tuebinger-durchaltevermoegen.de" style="font-size: inherit;">info@tuebinger-durchaltevermoegen.de</a> oder schreib uns an!
+                    Du hast Bock uns zu unsterstützen, z.B. beim Location-Scouting? Melde dich unter <a href = "mailto: info@tuebinger-durchaltevermoegen.live" style="font-size: inherit;">info@tuebinger-durchaltevermoegen.live</a> oder schreib uns an!
                 </p>
             </div>
 
 
             <p style="font-style: italic;">The "Tübinger Durchhaltevermögen" wants to support the electronic music scene in Tübingen with regular live streams at interesting places during the Corona crisis. We want to offer a stage for different styles of music, to loosen up the sluggish
-                everyday life during the quarantine and to spread some optimism in Tübingen. <br><br> You want to help us out, say, with location scouting? Contact us under <a href = "mailto: info@tuebinger-durchaltevermoegen.de" style="font-size: inherit;">info@tuebinger-durchaltevermoegen.de</a> or write us a message via our social media
+                everyday life during the quarantine and to spread some optimism in Tübingen. <br><br> You want to help us out, say, with location scouting? Contact us under <a href = "mailto: info@tuebinger-durchaltevermoegen.live" style="font-size: inherit;">info@tuebinger-durchaltevermoegen.live</a> or write us a message via our social media
                 accounts!</p>
 
         </div>
@@ -149,6 +173,68 @@
         </div>
     </div>
     <!-- <script src="" async defer></script>-->
+
+    <script>
+        client_id='p924dedva7y31qnr2ck32951tscwxl'
+
+        headers = {
+            'Client-ID': client_id,
+            'Accept': 'application/vnd.twitchtv.v5+json'
+        }
+
+        function check_live() {
+            r = fetch('https://api.twitch.tv/kraken/users?login=tuebdu', {
+                headers: headers
+            })
+            .then(
+                function(response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                    response.status);
+                    return;
+                }
+    
+                // Examine the text in the response
+                return response.json().then(function(data) {
+                    channel_id = data.users[0]._id
+                    return channel_id
+                });
+                }
+            ).then(function(channel_id) {
+                //44322889
+                return fetch('https://api.twitch.tv/kraken/streams/' + channel_id, {
+                    headers: headers
+                })
+            }).then(
+                function(response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                    response.status);
+                    return;
+                }
+    
+                // Examine the text in the response
+                return response.json().then(function(data) {
+                    if (data.stream == null) {
+                        console.log("twitch is not live!")
+                        document.getElementById("landingwrapper").style.display = "";
+                        document.getElementById("twitchwrapper").style.display = 'none';
+                    } else {
+                        console.log("twitch is live!")
+                        document.getElementById("landingwrapper").style.display = "none";
+                        document.getElementById("twitchwrapper").style.display = '';
+                    }
+                });
+                }
+            )
+        }
+
+        check_live()
+
+        window.setInterval(function(){
+            check_live()
+          }, 5000);
+    </script>
 
 </body>
 
